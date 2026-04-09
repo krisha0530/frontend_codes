@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff0f3; /* Soft pink background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
+        }
+        .card-header {
+            background-color: #ffb3c1;
+            color: white;
+            border-radius: 20px 20px 0 0 !important;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .btn-submit {
+            background-color: #ff758f;
+            border: none;
+            color: white;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #c9184a;
+            color: white;
+        }
+        .btn-reset {
+            background-color: #f8ad9d;
+            border: none;
+            color: white;
+        }
+        .form-label {
+            color: #590d22;
+            font-weight: 500;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #ffb3c1;
+            box-shadow: 0 0 0 0.25rem rgba(255, 179, 193, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">🌸 Join Our Community 🌸</div>
+                <div class="card-body p-4">
+                    <form id="registrationForm" class="needs-validation" novalidate>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="userName" placeholder="Your beautiful name" required>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Gmail</label>
+                            <input type="email" class="form-control" id="userEmail" placeholder="example@gmail.com" required>
+                            <div class="invalid-feedback">Please enter a valid Gmail address.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="userPhone" pattern="[0-9]{10}" placeholder="10-digit number" required>
+                            <div class="invalid-feedback">Please enter a 10-digit phone number.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="userPass" minlength="6" required>
+                            <div class="invalid-feedback">Password must be at least 6 characters.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <select class="form-select" id="userCity" required>
+                                <option value="" selected disabled>Choose your city...</option>
+                                <option>New York</option>
+                                <option>Paris</option>
+                                <option>London</option>
+                                <option>Tokyo</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a city.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label d-block">Gender</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label d-block">Hobbies</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="hobby1" value="coding">
+                                <label class="form-check-label" for="hobby1">Coding</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="hobby2" value="design">
+                                <label class="form-check-label" for="hobby2">Design</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="hobby3" value="music">
+                                <label class="form-check-label" for="hobby3">Music</label>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <button type="reset" class="btn btn-reset px-4">Reset</button>
+                            <button type="submit" class="btn btn-submit px-4">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for Bootstrap Validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    // Custom Gmail validation check
+                    const emailInput = document.getElementById('userEmail');
+                    if (!emailInput.value.endsWith('@gmail.com')) {
+                        emailInput.setCustomValidity('Must be a Gmail address');
+                    } else {
+                        emailInput.setCustomValidity('');
+                    }
+
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    } else {
+                        alert("Form submitted successfully! ✨");
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+
+</body>
+</html>
